@@ -1,0 +1,18 @@
+.effect-shine {
+    font-weight: bold;
+    background: linear-gradient(90deg, #edcc0e, #FFD700, #FFD700, bisque, #FFD700, #FFD700, #FFD700);
+    background-size: 200% 100%;
+    animation: shine 3s infinite linear;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @keyframes shine {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
