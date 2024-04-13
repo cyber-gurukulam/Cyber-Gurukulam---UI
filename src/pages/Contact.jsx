@@ -1,5 +1,5 @@
 import React from 'react'
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 const Contact = () => {
   const HandleSendBtn = () => {
@@ -21,7 +21,9 @@ const Contact = () => {
             subject : subject,
             message : message
         }
-        fetch("http://localhost:8080/api/contact", {
+        const baseUrl = process.env.BASE_URL;
+        console.log(baseUrl)
+        fetch(`${baseUrl}/api/contact`, {
             method: 'POST',
             headers : {
                 "Content-Type" : "application/json"
@@ -37,12 +39,14 @@ const Contact = () => {
           })
           .then(data => {
             console.log('Success:', data.message);
+            toast.success('Message sent successfully 😊');
           })
           .catch(error => {
             console.error('Error:', error);
+            toast.error("Internal Server Error, Please try again later")
           }
           )
-        toast.success('Message sent successfully 😊');
+        
     }
   }
 
@@ -62,32 +66,33 @@ const Contact = () => {
                 <div  className="row">
                     <div  className="col-md-6">
                         <div  className="md-form mb-2">
-                            <input type="text" id="name" name="name"  className="form-control" placeholder='Your Name'/>
+                            <input type="text" id="name" name="name" autoComplete='off'  className="form-control" placeholder='Your Name'/>
                         </div>
                     </div>
                     <div  className="col-md-6">
                         <div  className="md-form mb-2">
-                            <input type="text" id="email" name="email"  className="form-control" placeholder='Your email'/>
+                            <input type="text" id="email" name="email" autoComplete='off'  className="form-control" placeholder='Your email'/>
                         </div>
                     </div>
                 </div>
                 <div  className="row">
                     <div  className="col-md-12">
                         <div  className="md-form mb-2">
-                            <input type="text" id="subject" name="subject"  className="form-control" placeholder='Subject'/>
+                            <input type="text" id="subject" name="subject" autoComplete='off'  className="form-control" placeholder='Subject'/>
                         </div>
                     </div>
                 </div>
                 <div  className="row">
                     <div  className="col-md-12">
                         <div  className="md-form">
-                            <textarea type="text" id="message" name="message" rows="2"  className="form-control md-textarea" placeholder='Please enter you message here Your message'></textarea>
+                            <textarea type="text" id="message" name="message" rows="2"  className="form-control md-textarea msg-area" placeholder='Please enter you message here Your message'></textarea>
                         </div>
                     </div>
                 </div>
             </form>
             <div  className="text-center text-md-left mt-2">
-                <a  className="btn btn-primary" onClick={HandleSendBtn}>Send</a>
+                {/* <a className="btn btn-primary" onClick={HandleSendBtn}>Send</a> */}
+                <button className="btn btn-primary" onClick={HandleSendBtn}>Send</button>
             </div>
             <div  className="status"></div>
         </div>

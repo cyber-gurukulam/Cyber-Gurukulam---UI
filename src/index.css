@@ -7,16 +7,13 @@ html{
     scroll-behavior: smooth;
 }
 
-/* body{
-    background: rgb(8,0,147);
-    background: radial-gradient(circle, rgba(8,0,147,1) 0%, rgba(9,9,121,1) 38%, rgba(9,9,121,1) 100%);
-} */
 
 body{
   background: linear-gradient(300deg,#080b30,#2e0854,#191970);
   background-size: 180% 180%;
   animation: gradient-animation 18s ease infinite;
 }
+
 
 @keyframes gradient-animation {
     0% {
